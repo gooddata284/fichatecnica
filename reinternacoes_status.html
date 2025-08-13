@@ -7,46 +7,38 @@
   body {
     background-color: white;
     font-family: Arial, sans-serif;
-    font-size: 13px; /* mesmo tamanho aproximado da imagem */
-    line-height: 1px; /* entrelinha mínima */
+    font-size: 14px;
+    line-height: 1; /* Sem espaçamento extra */
     margin: 0;
-    padding: 8px;
-  }
-  .container {
-    display: flex;
-    align-items: center;
-    gap: 18px; /* espaçamento entre blocos */
+    padding: 10px;
   }
   .item {
     display: flex;
     align-items: center;
   }
   .dot {
-    width: 8px;  /* tamanho igual ao da imagem */
-    height: 8px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     margin-right: 5px;
-    flex-shrink: 0;
   }
-  .green { background-color: #2ca02c; }   /* tom próximo ao da imagem */
-  .yellow { background-color: #ffb000; }  /* tom próximo ao da imagem */
-  .red { background-color: #e74c3c; }     /* tom próximo ao da imagem */
+  .green { background-color: #28a745; }
+  .yellow { background-color: #ffc107; }
+  .red { background-color: #dc3545; }
 </style>
 </head>
 <body>
-  <div class="container">
-    <div class="item">
-      <div class="dot green"></div>
-      <span>0% - 10%: Excelente</span>
-    </div>
-    <div class="item">
-      <div class="dot yellow"></div>
-      <span>11% - 20%: Atenção</span>
-    </div>
-    <div class="item">
-      <div class="dot red"></div>
-      <span>>20%: Crítico</span>
-    </div>
+  <div class="item">
+    <div class="dot green"></div>
+    <span>0% - 10%: Excelente</span>
+  </div>
+  <div class="item">
+    <div class="dot yellow"></div>
+    <span>11% - 20%: Atenção</span>
+  </div>
+  <div class="item">
+    <div class="dot red"></div>
+    <span>>20%: Crítico</span>
   </div>
 </body>
 </html>
