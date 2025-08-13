@@ -82,9 +82,16 @@
         <div style="margin-top:8px" class="small">
           <p><strong>SQL (exemplo)</strong></p>
           <pre class="code">
-SELECT COUNT(*) reinternacoes
-FROM   MV_GD_INTERNACAO_REINTERNACAO_BASE t
-WHERE  t.dt_reinternacao BETWEEN t.dt_alta AND t.dt_alta + 30
+OBJETOS:
+dbms_refresh.refresh('"GOODDATA"."MV_GD_INTERNACAO_REINTERNACAO_BASE"');
+dbms_refresh.refresh('"GOODDATA"."MV_GD_INTERNACAO_REINTERNACAO"');
+dbms_refresh.refresh('"GOODDATA"."MV_GD_INTERNACAO_REINTERNACAO_GRUPO"');
+p_gd_internacao_reinternacao_01_log;
+p_gd_internacao_reinternacao_02_atualiza_ft;
+
+SQL:
+SELECT *
+FROM   mv_gd_internacao_reinternacao_grupo t
           </pre>
         </div>
       </details>
@@ -101,4 +108,5 @@ WHERE  t.dt_reinternacao BETWEEN t.dt_alta AND t.dt_alta + 30
 </script>
 </body>
 </html>
+
 
