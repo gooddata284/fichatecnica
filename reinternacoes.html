@@ -62,6 +62,7 @@
       <div class="section">
         <div class="small"><strong>Metodologia / Regras de Identificação</strong></div>
         <ol class="small" style="margin-top:8px; padding-left:18px">
+          <li>Considerar apenas guias do tipo "Internação", que estejam integradas.</li>
           <li>Desconsiderar guias cuja primeira/segunda internação tenha regime "2 - Hospital Dia" ou "3 - Domiciliar".</li>
           <li>Desconsiderar guias cuja primeira/segunda internação envolva prestadores "de capa" listados na regra 11 (códigos: 703, 943, 1051).</li>
           <li>Desconsiderar guias em que a data de atendimento esteja entre a data de alta da guia anterior e a data de atendimento da próxima guia.</li>
@@ -69,7 +70,6 @@
               <em>Dt_atend atual – Dt_alta da guia anterior</em>.  
               Se essa diferença for igual ou superior a 2 dias, considera-se uma nova internação ou reinternação.
           </li>
-          <li>Considerar apenas guias do tipo "Internação", que estejam integradas.</li>
         </ol>
       </div>
 
@@ -108,5 +108,6 @@ FROM   mv_gd_internacao_reinternacao_grupo t
 </script>
 </body>
 </html>
+
 
 
