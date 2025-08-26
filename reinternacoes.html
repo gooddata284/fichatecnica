@@ -47,9 +47,12 @@
         Percentual de pacientes que retornaram para internação dentro de <strong>30 dias</strong> da data de alta.
       </div>
 
-      <div style="margin-top:12px" class="small"><strong>Fórmula</strong></div>
+      <div style="margin-top:12px" class="small"><strong>Métricas/Fórmulas</strong></div>
       <pre class="code">
-(Nº de reinternações no período ÷ Nº total de internações no período) × 100
+  <li>Qdt dias entre internações:   
+        <em>Dt_atend atual – Dt_alta da guia anterior</em>.  
+  </li>
+  (Nº de reinternações no período ÷ Nº total de internações no período) × 100
       </pre>
 
       <div style="margin-top:10px" class="small"><strong>Interpretação</strong></div>
@@ -67,9 +70,9 @@
           <li>Regime "2 - Hospital Dia" - Considerar primeira internação e desconsiderar como reinternação.</li>
           <li>Desconsiderar guias cuja primeira/segunda internação envolva prestadores "de capa" listados na regra 11 (códigos: 703, 943, 1051).</li>
           <li>Desconsiderar guias em que a data de atendimento esteja entre a data de alta da guia anterior e a data de atendimento da próxima guia.</li>
-          <li>A diferença entre as guias é calculada como:  
+          <li>A diferença de dias entre as guias é calculada como:   
               <em>Dt_atend atual – Dt_alta da guia anterior</em>.  
-              Se essa diferença for igual ou superior a 2 dias, considera-se uma nova internação ou reinternação.
+          Se essa diferença for igual ou superior a 2 dias, considera-se uma nova internação ou reinternação.
           </li>
         </ol>
       </div>
@@ -109,6 +112,7 @@ FROM   mv_gd_internacao_reinternacao_grupo t
 </script>
 </body>
 </html>
+
 
 
 
