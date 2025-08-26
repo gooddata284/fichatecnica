@@ -86,14 +86,14 @@
           <pre class="code">
 OBJETOS:
 dbms_refresh.refresh('"GOODDATA"."MV_GD_INTERNACAO_REINTERNACAO_BASE"');
-dbms_refresh.refresh('"GOODDATA"."MV_GD_INTERNACAO_REINTERNACAO"');
-dbms_refresh.refresh('"GOODDATA"."MV_GD_INTERNACAO_REINTERNACAO_GRUPO"');
+dbms_refresh.refresh('"GOODDATA"."MV_GD_INTERNACAO_REINTERNACAO_FINAL"');
 p_gd_internacao_reinternacao_01_log;
 p_gd_internacao_reinternacao_02_atualiza_ft;
+gooddata.pkg_gd_internacao_reinternacao_conf.run(true, true); 
 
 SQL:
 SELECT *
-FROM   mv_gd_internacao_reinternacao_grupo t
+FROM   mv_gd_internacao_reinternacao_final t
           </pre>
         </div>
       </details>
@@ -110,6 +110,7 @@ FROM   mv_gd_internacao_reinternacao_grupo t
 </script>
 </body>
 </html>
+
 
 
 
