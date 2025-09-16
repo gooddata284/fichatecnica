@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Indicador — Volume de Guias</title>
+<style>
+  :root{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;}
+  body{margin:0;padding:14px;background:#f6f7fb;color:#222;}
+  .card{max-width:880px;background:#fff;border-radius:10px;box-shadow:0 6px 18px rgba(30,40,60,0.08);padding:18px;}
+  .top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  h1{font-size:18px;margin:0;color:#0b5bbf}
+  .subtitle{font-size:12px;color:#666;margin-top:6px}
+  .section{margin-top:12px;padding-top:8px;border-top:1px dashed #eee}
+  pre.code{background:#0f1724;color:#e6eef8;padding:12px;border-radius:6px;overflow:auto;font-size:13px}
+  .badges{display:flex;gap:8px;flex-wrap:wrap}
+  .badge{padding:6px 8px;border-radius:8px;font-size:12px;background:#eef4ff;color:#0b3a66}
+  .faixa{display:flex;gap:10px;align-items:center;margin:6px 0}
+  .dot{width:12px;height:12px;border-radius:50%}
+  .dot.green{background:#3A9452}.dot.gray{background:#94a3b8}
+  .actions{display:flex;gap:10px;margin-top:12px}
+  button{cursor:pointer;border:0;padding:8px 12px;border-radius:8px;font-weight:600}
+  .btn-primary{background:#0b84ff;color:white}
+  .btn-outline{background:transparent;border:1px solid #ddd}
+  .small{font-size:13px;color:#444}
+  details{margin-top:8px}
+  a.link{color:#0b5bbf;text-decoration:none;font-weight:600}
+  @media (max-width:520px){.card{padding:12px}}
+</style>
+</head>
+<body>
+  <div class="card" role="region" aria-label="Descrição do indicador">
+    <div class="top">
+      <div>
+        <h1>📥 Volume de Guias</h1>
+        <div class="subtitle">Indicador de Regulação de Guias</div>
+      </div>
+      <div class="badges">
+ <!--       <div class="badge">Período: <strong>Sep 2024 — Aug 2025</strong></div> -->
+        <div class="badge">Atualizado: <span id="data-atualizacao">16/09/2025</span></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="small"><strong>Definição</strong></div>
+      <div class="small" style="margin-top:6px">
+        Contagem das guias que passaram pelo processo de Regulação no período selecionado. Inclui desagregações por origem, caráter e conformidade com RN623.
+      </div>
+
+     <div style="margin-top:10px" class="small"><strong>Fonte de dados</strong></div>
+      <div style="margin-top:8px">
+        <div class="faixa"><div class="dot green"></div><div>Relatório SGU - Operacional - AUTSC - INDICADORES - RN259/RN395</div></div>
+ <!--        <div class="faixa"><div class="dot gray"></div><div>Oscilações mensais: correlacionar com campanhas, pandemias, feriados ou problemas de integração.</div></div> -->
+      </div>
+
+
+      <div style="margin-top:12px" class="small"><strong>Métricas</strong></div>
+      <ul class="small" style="margin-top:6px; padding-left:18px">
+        <li>Qtde de Guias: <strong>Contagem de Guias</strong>.</li>
+        <li>Média Mensal: <strong>Qtde de Guias / Qtde Meses</strong>.</li>
+      </ul>
+
+     <div style="margin-top:10px" class="small"><strong>Fórmula / Agregação</strong></div>
+      <div class="small" style="margin-top:6px">
+        Contagem simples de guias que registraram passagem por Regulação no período. Métricas agregadas por mês e por filtros: Equipe Regulação, Caráter (Urgência/Eletiva), Origem, Status (Aprovada/Negada).
+      </div>
+
+
+ 
+<!-- 
+      <div class="section">
+        <div class="small"><strong>Metodologia / Regras</strong></div>
+        <ol class="small" style="margin-top:8px; padding-left:18px">
+          <li>Incluir somente guias que passaram por Regulação e que estejam integradas ao ambiente de análise.</li>
+          <li>Separar por Caráter: Urgência vs Eletiva conforme campo de origem da guia.</li>
+          <li>Identificar RN623: marcar guias cujo fluxo de autorização esteja sujeito aos prazos estabelecidos na RN623.</li>
+          <li>Calcular variação mensal como: <em>(valor_mes_atual - valor_mes_anterior) / valor_mes_anterior × 100</em>. Exibir sinal e %.</li>
+          <li>Remover duplicidades por chave guia quando houver replicação técnica.</li>
+        </ol>
+      </div>
+-->
+      <div class="actions">
+        <button class="btn-outline" id="toggle-more">Mostrar detalhes técnicos</button>
+      </div>
+
+      <details id="detalhes" style="margin-top:10px">
+        <summary style="cursor:pointer;font-weight:600">Detalhes técnicos</summary>
+        <div style="margin-top:8px" class="small">
+ <!--         <p><strong>Exemplo de objetos e instruções</strong></p>
+          <pre class="code">
+Fontes de dados: visão / materialized views de Regulação (conforme relatório de origem).
+Período: Sep/2024 — Aug/2025.
+Total acumulado e média mensal extraídos do relatório de volume.
+          </pre>
+-->
+          <p style="margin-top:8px"><strong>SQL </strong></p>
+          <pre class="code">
+select * 
+from GOODDATA.V_GD_FT_REGULACAO_GUIAS
+          </pre>
+<!--
+          <p style="margin-top:8px"><strong>Observações</strong></p>
+          <ul class="small" style="padding-left:18px">
+            <li>Agrupamentos adicionais: equipe_regulacao, carater (Urgência/Eletiva), origem, status (Aprovada/Negada), RN623 flag.</li>
+            <li>Validação de dados: checar duplicidades e guias de "Hospital Dia" ou "Domiciliar" se aplicável.</li>
+            <li>Relatório de origem e layout de consulta baseados no PDF fornecido.</li>
+ -->
+		</ul>
+        </div>
+      </details>
+ <!-- 
+      <div class="section" style="margin-top:12px">
+        <div class="small"><strong>Fontes / Referências</strong></div>
+        <div class="small" style="margin-top:6px">
+          Documento base: Volume de Guias (relatório PDF fornecido).<br/>
+          Exemplo de estilo e layout usado como referência: ficha técnica "Taxa de Reinternação".
+        </div>
+      </div>
+-->
+    </div>
+  </div>
+
+<script>
+  document.getElementById('toggle-more').addEventListener('click', function(){
+    const det = document.getElementById('detalhes');
+    det.open = !det.open;
+    this.textContent = det.open ? "Esconder detalhes técnicos" : "Mostrar detalhes técnicos";
+  });
+</script>
+</body>
+</html>
