@@ -21,103 +21,117 @@
         --gray-soft:#f8fafc;
     }
 
-    *{
+    *, *::before, *::after{
         box-sizing:border-box;
     }
 
-    body{
+    html, body{
         margin:0;
         padding:0;
+        width:100%;
+        max-width:100%;
+        overflow-x:hidden;
+    }
+
+    body{
         font-family:"Segoe UI", Arial, sans-serif;
-		font-size: 14px;
+        font-size:14px;
         background:var(--light);
         color:var(--text);
-		line-height: 1.1; /* Diminui o espaço entre linhas de todo o texto */
+        line-height:1.35;
     }
 
     .container{
-        width: 1000px;
+        width:min(100%, 1000px);
+        max-width:100%;
         margin:0 auto;
         background:var(--white);
         border-radius:14px;
         box-shadow:0 8px 24px rgba(0,0,0,0.08);
-        overflow: hidden; /* Garante que nada "vaze" para fora das bordas arredondadas */
+        overflow:hidden;
     }
 
-	/* 1. CONTAINER PAI: Controla o H1 vs a GRID de blocos */
-	.header {
-		background: linear-gradient(135deg, var(--navy), var(--navy-2));
-		color: var(--white);
-		padding: 10px 32px;
-		display: flex;            /* Coloca o H1 e a header-grid na mesma linha */
-		justify-content: space-between; /* Empurra o H1 para a esquerda e os blocos para a direita */
-		align-items: center;      /* Alinha os dois verticalmente pelo centro */
-		gap: 20px;                /* Garante um espaço mínimo entre o título e as informações */
-	}
+    .header {
+        background: linear-gradient(135deg, var(--navy), var(--navy-2));
+        color: var(--white);
+        padding: 16px 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
 
-	/* 2. O TÍTULO: Removemos a margem de baixo para não quebrar o alinhamento central */
-	.header h1 {
-		margin: 0;                /* Remove margens para alinhar perfeitamente ao centro com os blocos */
-		line-height: 1.1;
-		font-size: 28px;
-		font-weight: 700;
-		flex: 1;                  /* Faz o título ocupar o espaço disponível, empurrando os blocos */
-	}
+    .header h1 {
+        margin: 0;
+        line-height: 1.15;
+        font-size: clamp(22px, 3vw, 28px);
+        font-weight: 700;
+        flex: 1 1 380px;
+        min-width: 0;
+        word-break: break-word;
+    }
 
-	/* 3. A GRID DOS BLOCOS: Controla o bloco de 'Atualização' vs 'Área' */
-	.header-grid {
-		display: flex;            /* Coloca os dois blocos (atualização e área) um ao lado do outro */
-		gap: 14px;                /* Espaço entre os dois boxes */
-		flex-shrink: 0;           /* Impede que os boxes "encolham" se o título for muito grande */
-	}
+    .header-grid {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        flex: 0 1 auto;
+        max-width: 100%;
+    }
 
-	/* 4. OS BLOCOS INDIVIDUAIS (Manteve seu estilo original) */
-	.header-box {
-		background: rgba(255,255,255,0.10);
-		border: 1px solid rgba(255,255,255,0.18);
-		border-radius: 10px;
-		padding: 5px 14px;
-		font-size: 13px;
-		line-height: 1.2;
-		min-width: 160px;         /* Garante um tamanho padrão para os boxes */
-	}
+    .header-box {
+        background: rgba(255,255,255,0.10);
+        border: 1px solid rgba(255,255,255,0.18);
+        border-radius: 10px;
+        padding: 8px 14px;
+        font-size: 13px;
+        line-height: 1.3;
+        min-width: 160px;
+        max-width: 100%;
+    }
 
     .content{
-        padding:10px 32px 36px 32px;
+        padding:16px 24px 28px;
     }
 
     .section{
-        margin-bottom:26px;
+        margin-bottom:24px;
+        min-width:0;
     }
 
     .section h2{
-        margin:0 0 6px 0;
+        margin:0 0 8px 0;
         font-size:19px;
         color:var(--navy);
         border-left:5px solid var(--navy);
         padding-left:10px;
+        line-height:1.25;
     }
 
     .legend-box h3{
         margin:0 0 12px 0;
         font-size:16px;
         color:var(--text);
+        line-height:1.3;
     }
 
     .h4{
-        margin:0 0 6px 0;
+        margin:0 0 8px 0;
         font-size:19px;
         color:var(--navy);
         padding-left:8px;
-		font-weight: 700; /* Esta linha adiciona o negrito */
+        font-weight:700;
+        line-height:1.25;
     }
-	
+
     .card{
         background:var(--gray-soft);
         border:1px solid #e5e7eb;
         border-radius:10px;
         padding:16px 18px;
-        line-height:1.2;
+        line-height:1.45;
+        min-width:0;
     }
 
     .formula{
@@ -126,26 +140,35 @@
         border-radius:10px;
         padding:18px;
         text-align:left;
-        font-size:20px;
+        font-size:clamp(16px, 2.2vw, 20px);
         font-weight:700;
         color:var(--navy);
         margin-bottom:6px;
+        overflow-wrap:anywhere;
     }
 
     .mini-note{
         font-size:14px;
         color:var(--gray);
-        line-height:1.3;
+        line-height:1.4;
+    }
+
+    .table-wrap{
+        width:100%;
+        max-width:100%;
+        overflow-x:auto;
+        -webkit-overflow-scrolling:touch;
+        border:1px solid #e5e7eb;
+        border-radius:10px;
+        background:#fff;
     }
 
     table{
-		width: auto; 
+        width:100%;
+        min-width:640px;
         border-collapse:collapse;
-        margin-top:6px;
+        margin-top:0;
         font-size:14px;
-        overflow:hidden;
-        border-radius:10px;
-		border: 1px solid #e5e7eb;
     }
 
     thead th{
@@ -153,19 +176,20 @@
         color:var(--white);
         text-align:left;
         font-weight:600;
-		padding: 8px 10px;      /* Aumenta o espaço lateral dentro das células */
-		white-space: nowrap;     /* Impede que o título da coluna quebre em 2 linhas */
+        padding:8px 10px;
+        white-space:normal;
+        word-break:break-word;
         border-bottom:1px solid #e5e7eb;
-
+        line-height:1.3;
     }
 
     tbody td{
         border-bottom:1px solid #e5e7eb;
         vertical-align:top;
-		padding: 4px 9px;      /* Aumenta o espaço lateral dentro das células */
-		white-space: nowrap;     /* Impede que o título da coluna quebre em 2 linhas */
-
-
+        padding:6px 9px;
+        white-space:normal;
+        word-break:break-word;
+        line-height:1.35;
     }
 
     tbody tr:nth-child(even){
@@ -178,30 +202,19 @@
         border-radius:999px;
         font-size:12px;
         font-weight:700;
+        white-space:nowrap;
     }
 
-    .tag-green{
-        background:#dcfce7;
-        color:var(--green);
-    }
-
-    .tag-yellow{
-        background:#fef3c7;
-        color:var(--yellow);
-    }
-
-    .tag-red{
-        background:#fee2e2;
-        color:var(--red);
-    }
+    .tag-green{ background:#dcfce7; color:var(--green); }
+    .tag-yellow{ background:#fef3c7; color:var(--yellow); }
+    .tag-red{ background:#fee2e2; color:var(--red); }
 
     .grid-2{
-		display: grid;  /*inline-grid;*/    /* Faz o container da grid não ocupar a linha toda */
-		gap: 18px;
-		width: 70%; /* Ocupa a largura total do container fixo */
-		grid-template-columns: auto auto; /* Colunas se ajustam ao tamanho do texto */
-		margin-top: 10px;
-
+        display:grid;
+        gap:18px;
+        width:100%;
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+        margin-top:10px;
     }
 
     .legend-box{
@@ -209,11 +222,13 @@
         border:1px solid #e5e7eb;
         border-radius:10px;
         padding:14px 16px;
+        min-width:0;
     }
 
     .legend-item{
         margin:6px 0;
         font-size:14px;
+        line-height:1.35;
     }
 
     .green-text{ color:var(--green); font-weight:700; }
@@ -225,46 +240,29 @@
         margin-top:6px;
         font-size:13px;
         color:var(--gray);
+        line-height:1.4;
     }
 
     @media (max-width: 900px){
-        .header-grid,
-        .grid-2{
-            grid-template-columns:1fr;
-        }
-
-        .content{
-            padding:20px;
-        }
-
-        .header{
-            /*padding:22px 20px;*/
-
-		display: flex; /* Alinha os itens em linha */
-		justify-content: space-between; /* Empurra o H1 para a esquerda e os boxes para a direita */
-		align-items: center; /* Centraliza verticalmente */
-		gap: 20px; /* Espaço entre o título e os boxes */
-		padding: 10px;
-
-        }
-
-        .header h1{
-            font-size:22px;
-        }
-
-        .formula{
-            font-size:16px;
-
-        table{
-			width: auto;             /* Faz a tabela ocupar apenas o espaço necessário */
-            display:block;
-            overflow-x:auto;
-            white-space:nowrap;
-			border: 1px solid #e5e7eb;
-        }
-
+        .content{ padding:16px; }
+        .header{ padding:14px 16px; }
+        .header-grid{ width:100%; }
+        .header-box{ flex:1 1 220px; min-width:0; }
+        .grid-2{ grid-template-columns:1fr; }
+        table{ min-width:560px; }
     }
-	
+
+    @media (max-width: 640px){
+        body{ font-size:13px; }
+        .container{ border-radius:0; }
+        .header h1{ flex-basis:100%; }
+        .header-grid{ flex-direction:column; gap:10px; }
+        .header-box{ width:100%; }
+        .section h2, .h4{ font-size:17px; }
+        .card, .formula, .legend-box{ padding:14px; }
+        table{ min-width:520px; font-size:13px; }
+        thead th, tbody td{ padding:7px 8px; }
+    }
 </style>
 </head>
 <body>
@@ -298,8 +296,8 @@
             <div class="card">
                 Cada resposta da pesquisa é convertida para uma escala de <strong>0 a 100</strong>, conforme escala de conversão das respostas definida abaixo.
                 <br><br>
-				A conversão da escala padroniza a leitura final para que o indicador sempre tenha a mesma direção interpretativa.
-				<br><br>
+                A conversão da escala padroniza a leitura final para que o indicador sempre tenha a mesma direção interpretativa.
+                <br><br>
                 A conversão respeita a natureza da pergunta:
                 <br>
                 <strong>Perguntas positivas</strong> seguem a ordem direta da escala e
@@ -309,60 +307,55 @@
                 <br><br>
                 Dessa forma, no resultado final:
                 <strong>quanto maior o índice, melhor o clima organizacional.</strong>
-			</div>
+            </div>
         </div>
-		
+
         <div class="section">
             <div class="h4">Escala de Conversão das Respostas</div>
-            
-            <table>
-                <thead>
-                    <tr style="text-align: center;">
-                        <th>Ordem</th>
-                        <th>Resposta</th>
-                        <th style="text-align: center;">Valor para Pergunta Positiva</th>
-                        <th style="text-align: center;">Valor para Pergunta Negativa</th>
-<!--                        <th>Leitura</th> -->
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Nunca/quase nunca</td>
-                        <td style="text-align: center;">0</td>
-                        <td style="text-align: center;">100</td>
-<!--                        <td>Extremo</td> -->
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Raramente</td>
-                        <td style="text-align: center;">25</td>
-                        <td style="text-align: center;">75</td>
-<!--                        <td>Atenção</td> -->
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Às vezes</td>
-                        <td style="text-align: center;">50</td>
-                        <td style="text-align: center;">50</td>
-<!--                        <td>Neutro</td> -->
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Frequentemente</td>
-                        <td style="text-align: center;">75</td>
-                        <td style="text-align: center;">25</td>
-<!--                        <td>Favorável</td> -->
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>Sempre</td>
-                        <td style="text-align: center;">100</td>
-                        <td style="text-align: center;">0</td>
-<!--                        <td>Muito favorável</td> -->
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr style="text-align: center;">
+                            <th>Ordem</th>
+                            <th>Resposta</th>
+                            <th style="text-align: center;">Valor para Pergunta Positiva</th>
+                            <th style="text-align: center;">Valor para Pergunta Negativa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Nunca/quase nunca</td>
+                            <td style="text-align: center;">0</td>
+                            <td style="text-align: center;">100</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Raramente</td>
+                            <td style="text-align: center;">25</td>
+                            <td style="text-align: center;">75</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Às vezes</td>
+                            <td style="text-align: center;">50</td>
+                            <td style="text-align: center;">50</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Frequentemente</td>
+                            <td style="text-align: center;">75</td>
+                            <td style="text-align: center;">25</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Sempre</td>
+                            <td style="text-align: center;">100</td>
+                            <td style="text-align: center;">0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
             <div class="footer-note">
                 Observação: a mesma resposta pode representar leitura diferente dependendo da polaridade da pergunta. Por isso, a escala possui uma coluna para perguntas positivas e outra para perguntas negativas.
@@ -392,38 +385,40 @@
 
        <div class="section">
             <h2>4. Metas e Faixas de Tolerância</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Faixa</th>
-                        <th>Intervalo</th>
-                        <th>Farol</th>
-                        <th>Leitura Gerencial</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Meta atingida</td>
-                        <td>≥ 75%</td>
-                        <td><span class="tag tag-green">Verde</span></td>
-                        <td>Clima saudável e consistente. Manter boas práticas e monitorar pontos sensíveis.</td>
-                    </tr>
-                    <tr>
-                        <td>Atenção</td>
-                        <td>60% a 74%</td>
-                        <td><span class="tag tag-yellow">Amarelo</span></td>
-                        <td>Ambiente com sinais de alerta. Requer ações pontuais e análise por dimensão.</td>
-                    </tr>
-                    <tr>
-                        <td>Crítico</td>
-                        <td>&lt; 60%</td>
-                        <td><span class="tag tag-red">Vermelho</span></td>
-                        <td>Risco elevado para clima, engajamento e sustentação operacional. Exige plano de ação prioritário.</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Faixa</th>
+                            <th>Intervalo</th>
+                            <th>Farol</th>
+                            <th>Leitura Gerencial</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Meta atingida</td>
+                            <td>≥ 75%</td>
+                            <td><span class="tag tag-green">Verde</span></td>
+                            <td>Clima saudável e consistente. Manter boas práticas e monitorar pontos sensíveis.</td>
+                        </tr>
+                        <tr>
+                            <td>Atenção</td>
+                            <td>60% a 74%</td>
+                            <td><span class="tag tag-yellow">Amarelo</span></td>
+                            <td>Ambiente com sinais de alerta. Requer ações pontuais e análise por dimensão.</td>
+                        </tr>
+                        <tr>
+                            <td>Crítico</td>
+                            <td>&lt; 60%</td>
+                            <td><span class="tag tag-red">Vermelho</span></td>
+                            <td>Risco elevado para clima, engajamento e sustentação operacional. Exige plano de ação prioritário.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-		
+
         <div class="section">
             <h2>5. Periodicidade</h2>
             <div class="card">
@@ -438,12 +433,11 @@
         <div class="section">
             <h2>6. Fonte de Dados</h2>
             <div class="card">
-                <strong>Origem dos dados: </strong>G:\Arquivo\Gestão Pessoas\Carga_BI\QUESTIONARIO
-            <div class="footer-note">
-                Observação: base estruturada para importar no BI. <span class="red-text">Não alterar estrutura.</span> 
-            </div> 
-
- </div>
+                <strong>Origem dos dados:</strong> G:\Arquivo\Gestão Pessoas\Carga_BI\QUESTIONARIO
+                <div class="footer-note">
+                    Observação: base estruturada para importar no BI. <span class="red-text">Não alterar estrutura.</span>
+                </div>
+            </div>
         </div>
 
     </div>
